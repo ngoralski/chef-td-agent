@@ -10,7 +10,7 @@ Chef::Provider.send(:include, TdAgent::Version)
 reload_action = (reload_available?) ? :reload : :restart
 
 major_version = major
-template "/etc/td-agent/td-agent.conf" do
+template "#{node['td_agent']['etc_folder']}/td-agent.conf" do
   owner  node["td_agent"]["user"]
   group  node["td_agent"]["group"]
   mode "0644"

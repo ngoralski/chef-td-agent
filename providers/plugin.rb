@@ -20,14 +20,14 @@
 #
 
 action :create do
-  directory '/etc/td-agent/plugin' do
+  directory "#{node['td_agent']['etc_folder']}/plugin" do
     owner "root"
     group "root"
     mode "0755"
     action :create
   end
 
-  remote_file "/etc/td-agent/plugin/#{new_resource.plugin_name}.rb" do
+  remote_file "#{node['td_agent']['etc_folder']}/plugin/#{new_resource.plugin_name}.rb" do
     action :create_if_missing
     owner 'root'
     group 'root'
@@ -40,9 +40,9 @@ action :create do
 end
 
 action :delete do
-  file "/etc/td-agent/plugin/#{new_resource.plugin_name}.rb" do
+  file "#{node['td_agent']['etc_folder']}/plugin/#{new_resource.plugin_name}.rb" do
     action :delete
-    only_if { ::File.exist?("/etc/td-agent/plugin/#{new_resource.plugin_name}.rb") }
+    only_if { ::File.exist?("#{node['td_agent']['etc_folder']}t/plugin/#{new_resource.plugin_name}.rb") }
     notifies :restart, "service[td-agent]"
   end
 

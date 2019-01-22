@@ -24,7 +24,7 @@ include ::TdAgent::Version
 action :create do
   fail 'You should set the node[:td_agent][:includes] attribute to true to use this resource.' unless node['td_agent']['includes']
 
-  template "/etc/td-agent/conf.d/#{new_resource.filter_name}.conf" do
+  template "#{node['td_agent']['etc_folder']}conf.d/#{new_resource.filter_name}.conf" do
     source 'filter.conf.erb'
     owner 'root'
     group 'root'
@@ -49,9 +49,9 @@ action :create do
 end
 
 action :delete do
-  file "/etc/td-agent/conf.d/#{new_resource.filter_name}.conf" do
+  file "#{node['td_agent']['etc_folder']}conf.d/#{new_resource.filter_name}.conf" do
     action :delete
-    only_if { ::File.exist?("/etc/td-agent/conf.d/#{new_resource.filter_name}.conf") }
+    only_if { ::File.exist?("#{node['td_agent']['etc_folder']}/conf.d/#{new_resource.filter_name}.conf") }
     notifies reload_action, 'service[td-agent]'
   end
 

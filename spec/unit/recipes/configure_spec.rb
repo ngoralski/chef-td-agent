@@ -12,7 +12,7 @@ describe 'td-agent::configure' do
   end
 
   it 'creates td-agent.conf' do
-    expect(chef_run).to create_template('/etc/td-agent/td-agent.conf')
+    expect(chef_run).to create_template("#{node['td_agent']['etc_folder']}/td-agent.conf")
   end
   
   it 'starts and enables the td-agent service' do

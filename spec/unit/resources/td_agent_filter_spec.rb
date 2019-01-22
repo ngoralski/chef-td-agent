@@ -35,7 +35,7 @@ describe 'td-agent-spec::filter' do
   end
 
   it 'creates the filter config file' do
-    expect(chef_run).to create_template('/etc/td-agent/conf.d/01_filter.conf')
+    expect(chef_run).to create_template("#{node['td_agent']['etc_folder']}/conf.d/01_filter.conf")
       .with(variables: {
         type: 'record_transformer',
         parameters: "  <record>\n    hostname \"\#{Socket.gethostname}\"\n    tag ${tag}\n  </record>\n",

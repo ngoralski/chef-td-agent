@@ -33,7 +33,7 @@ directory '/var/run/td-agent/' do
   action :create
 end
 
-directory '/etc/td-agent/' do
+directory "#{node['td_agent']['etc_folder']}" do
   owner  node["td_agent"]["user"]
   group  node["td_agent"]["group"]
   mode   '0755'
@@ -118,7 +118,7 @@ when "rhel", "amazon"
   end
 end
 
-directory "/etc/td-agent/conf.d" do
+directory "#{node['td_agent']['etc_folder']}/conf.d" do
   owner node["td_agent"]["user"]
   group node["td_agent"]["group"]
   mode "0755"

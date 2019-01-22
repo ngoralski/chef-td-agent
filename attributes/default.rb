@@ -25,3 +25,5 @@ default["td_agent"]["in_http"] = {
 }
 default["td_agent"]["yum_amazon_releasever"] = "$releasever"
 default['td_agent']['skip_repository'] = false
+
+default["td_agent"]["etc_folder"] = '/etc/td-agent'

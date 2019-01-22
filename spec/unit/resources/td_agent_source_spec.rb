@@ -35,6 +35,6 @@ describe 'td-agent-spec::source' do
   end
 
   it 'creates the input config file' do
-    expect(chef_run).to create_template('/etc/td-agent/conf.d/01_input.conf')
+    expect(chef_run).to create_template("#{node['td_agent']['etc_folder']}/conf.d/01_input.conf")
   end
 end

@@ -36,7 +36,7 @@ describe 'td-agent::install' do
   end
 
   it 'creates td-agent configuration directory' do
-    expect(chef_run).to create_directory('/etc/td-agent/')
+    expect(chef_run).to create_directory("#{node['td_agent']['etc_folder']}")
       .with(owner: 'td-agent', group: 'td-agent')
   end
 

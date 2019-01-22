@@ -10,16 +10,16 @@ describe service('td-agent') do
   it { should be_running }
 end
 
-describe file('/etc/td-agent') do
+describe file("#{node['td_agent']['etc_folder']}") do
   it { should be_a_directory }
 end
 
-describe file('/etc/td-agent/td-agent.conf') do
+describe file("#{node['td_agent']['etc_folder']}td-agent.conf") do
   it { should be_a_file }
   it { should be_mode 644 }
 end
 
-describe file('/etc/td-agent/conf.d') do
+describe file("#{node['td_agent']['etc_folder']}/conf.d") do
   it { should be_a_directory }
   it { should be_mode 755 }
 end

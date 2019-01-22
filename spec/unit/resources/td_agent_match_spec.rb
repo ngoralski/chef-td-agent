@@ -35,6 +35,6 @@ describe 'td-agent-spec::match' do
   end
 
   it 'creates the output config file' do
-    expect(chef_run).to create_template('/etc/td-agent/conf.d/01_out_file.conf')
+    expect(chef_run).to create_template("#{node['td_agent']['etc_folder']}/conf.d/01_out_file.conf")
   end
 end
